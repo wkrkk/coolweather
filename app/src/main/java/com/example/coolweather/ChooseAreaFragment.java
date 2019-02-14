@@ -65,7 +65,7 @@ public class ChooseAreaFragment extends Fragment {
     /**
      * 当前选中的级别
      */
-    private int currenLevel;
+    private int currentLevel;
 
     @Nullable
     @Override
@@ -86,10 +86,10 @@ public class ChooseAreaFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(currenLevel==LEVEL_PROVINCE){
+                if(currentLevel==LEVEL_PROVINCE){
                     selectedProvince=provinceList.get(position);
                     queryCities();
-                }else if(currenLevel==LEVEL_CITY){
+                }else if(currentLevel==LEVEL_CITY){
                     selectedCity=cityList.get(position);
                     queryCounties();
                 }
@@ -98,9 +98,9 @@ public class ChooseAreaFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currenLevel==LEVEL_COUNTY){
+                if(currentLevel==LEVEL_COUNTY){
                     queryCities();
-                }else if(currenLevel==LEVEL_CITY){
+                }else if(currentLevel==LEVEL_CITY){
                     queryProvinces();
                 }
             }
@@ -122,7 +122,7 @@ public class ChooseAreaFragment extends Fragment {
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
-            currenLevel=LEVEL_PROVINCE;
+            currentLevel=LEVEL_PROVINCE;
         }else{
             String address="http://guolin.tech/api/china";
             queryFromServe(address,"province");
@@ -144,7 +144,7 @@ public class ChooseAreaFragment extends Fragment {
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
-            currenLevel=LEVEL_CITY;
+            currentLevel=LEVEL_CITY;
         }else{
             int provinceCode=selectedProvince.getProvinceCode();
             String address="http://guolin.tech/api/china/"+provinceCode;
@@ -167,7 +167,7 @@ public class ChooseAreaFragment extends Fragment {
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
-            currenLevel=LEVEL_COUNTY;
+            currentLevel=LEVEL_COUNTY;
         }else{
             int provinceCode=selectedProvince.getProvinceCode();
             int cityCode=selectedCity.getCityCode();
@@ -200,7 +200,7 @@ public class ChooseAreaFragment extends Fragment {
                         @Override
                         public void run() {
                             closeProgressDialog();
-                            if("provice".equals(type)){
+                            if("province".equals(type)){
                                 queryProvinces();
                             }else if("city".equals(type)){
                                 queryCities();
