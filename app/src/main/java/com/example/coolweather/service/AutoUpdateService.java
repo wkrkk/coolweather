@@ -90,7 +90,6 @@ public class AutoUpdateService extends Service {
                         .getDefaultSharedPreferences(AutoUpdateService.this).edit();
                 editor.putString("bing_pic",bingPic);
                 editor.apply();
-
             }
         });
     }

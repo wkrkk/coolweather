@@ -72,11 +72,15 @@ public class ChooseAreaFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        //将动态布局加载进来
         View view=inflater.inflate(R.layout.choose_area,container,false);
+        //获取控件的实例
         titleText=(TextView)view.findViewById(R.id.title_text);
         backButton=(Button)view.findViewById(R.id.back_button);
         listView=(ListView)view.findViewById(R.id.list_view);
+        //构建适配器对象
         adapter=new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,dataList);
+        //将构建好的适配器对象传进去，listView与数据之间建立关联
         listView.setAdapter(adapter);
         return view;
     }

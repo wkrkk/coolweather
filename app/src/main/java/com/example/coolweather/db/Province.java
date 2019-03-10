@@ -2,6 +2,7 @@ package com.example.coolweather.db;
 
 import org.litepal.crud.DataSupport;
 
+//LitePal中的每个实体类都必须继承DataSupport
 public class Province extends DataSupport {
 
     private  int id;
